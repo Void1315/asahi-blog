@@ -2,7 +2,7 @@
 title: "C++ 智能指针之引用计数"
 description: "实现一个固定类(String)的引用计数类`StringRc`（不允许使用泛型，所以只能支持特定类型）。"
 publishDate: "2024 05 31"
-tags: ["C++", "智能指针", "引用计数"]
+tags: ["C++"]
 ---
 
 

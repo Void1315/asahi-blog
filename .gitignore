@@ -13,7 +13,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 yarn.lock
-
+*.zip
 # environment variables
 .env
 .env.production
