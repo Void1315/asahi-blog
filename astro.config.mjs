@@ -8,10 +8,11 @@ import rehypeExternalLinks from 'rehype-external-links'
 import expressiveCode from 'astro-expressive-code'
 import { expressiveCodeOptions } from './src/site.config'
 import icon from 'astro-icon'
+// import { visualizer } from 'rollup-plugin-visualizer'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://asahichyan33.top',
+	site: 'http://81.70.52.148',
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
 		tailwind({
@@ -39,5 +40,16 @@ export default defineConfig({
 		}
 	},
 	prefetch: true,
-	output: 'static'
+	output: 'static',
+	// vite: {
+	// 	plugins: [
+	// 		visualizer({
+	// 			filename: 'stats.html',
+	// 			title: 'Astro Visualizer',
+	// 			sourcemap: true,
+	// 			gzipSize: true,
+	// 			brotliSize: true,
+	// 		})
+	// 	]
+	// },
 })
