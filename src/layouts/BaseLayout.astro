@@ -5,6 +5,7 @@ import BaseHead from '@/components/BaseHead.astro'
 import Footer from '@/components/layout/Footer.astro'
 import Header from '@/components/layout/Header.astro'
 import ThemeProvider from '@/components/ThemeProvider.astro'
+import { ViewTransitions } from 'astro:transitions';
 
 import { siteConfig } from '@/site-config'
 
@@ -20,6 +21,7 @@ const {
 <html lang={siteConfig.lang} class=''>
 	<head>
 		<BaseHead articleDate={articleDate} description={description} ogImage={ogImage} title={title} />
+		<ViewTransitions/>
 	</head>
 
 	<body class='flex justify-center bg-background'>
