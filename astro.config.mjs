@@ -11,7 +11,7 @@ import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'http://81.70.52.148',
+	site: 'https://asahichyan33.top',
 	devToolbar: {
 		enabled: false
 	},
