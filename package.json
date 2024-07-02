@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "win-publish": "npm run build && cd cmd && publish.bat",
+    "arch-publish": "npm run build && sh ./cmd/publish.sh",
     "astro": "astro",
     "lint": "prettier --write  \"**/*.{js,jsx,ts,tsx,md,mdx,svelte,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,svelte,astro}\""
   },
@@ -30,7 +31,7 @@
     "reading-time": "^1.5.0",
     "rehype-external-links": "^3.0.0",
     "remark-unwrap-images": "^4.0.0",
-    "sharp": "^0.33.2",
+    "sharp": "^0.33.4",
     "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.4.2"
