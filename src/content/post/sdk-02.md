@@ -1,7 +1,7 @@
 ---
 title: "Windows SDK 02笔记"
 description: "学习创建一个Win32窗口程序的SOP。使用C++与Visual Studio 2022编写一个最小的窗口程序，并添加基本的消息处理函数。"
-publishDate: "2024 07 05"
+publishDate: "2024 07 07"
 tags: ["C++", "Windows SDK"]
 ---
 
