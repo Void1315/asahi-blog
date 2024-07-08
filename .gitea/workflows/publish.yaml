@@ -27,19 +27,17 @@ jobs:
       # 打包
       - name: Build
         run: npm run build
-      # 部署到服务器
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@main
+        # 创建.ssh文件夹 并写入私钥
+      - name: Write ssh key
         env:
-          # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
-          SSH_PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
-          SOURCE: "./dist/"
-          # 服务器域名/IP
-          REMOTE_HOST: ${{ secrets.SERVER_IP }}
-          # 服务器默认用户名为root
-          REMOTE_USER: "asahi"
-          # 目标目录
-          TARGET: '/home/asahi/work/asahi-blog/dist'
-          # 排除目录
-          EXCLUDE: "/node_modules/"
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: mkdir -p ~/.ssh && echo "$PRIVATE_KEY" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+      - name: Add known_hosts
+        env:
+          SERVER_IP: ${{ secrets.SERVER_IP }}
+        run: ssh-keyscan $SERVER_IP >> ~/.ssh/known_hosts
+      - name: echo pwd
+        run: pwd
+        # 运行 sh ./cmd/publish.sh 脚本
+      - name: Deploy
+        run: sh ./cmd/publish.sh
