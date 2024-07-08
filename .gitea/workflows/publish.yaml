@@ -19,16 +19,16 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
       # 安装pnpm
-      - name: 安装pnpm
+      - name: Install pnpm
         run: npm install -g pnpm
       # pnpm安装依赖
-      - name: pnpm安装依赖
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
       # 打包
-      - name: npm build
+      - name: Build
         run: npm run build
       # 部署到服务器
-      - name: deploy
+      - name: Deploy
         uses: easingthemes/ssh-deploy@main
         env:
           # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
