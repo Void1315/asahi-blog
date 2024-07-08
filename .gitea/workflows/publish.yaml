@@ -19,16 +19,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: https://gitee.com/mirror-actions/checkout@v4
       # 安装pnpm
-
-      # - name: Install pnpm
-      #   run: npm install -g pnpm
-      # # pnpm安装依赖
-      # - name: Install Dependencies
-      #   run: pnpm install --frozen-lockfile
-      # # 打包
-      # - name: Build
-      #   run: npm run build
-
+      - name: Install pnpm
+        run: npm install -g pnpm
+      # pnpm安装依赖
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+      # 打包
+      - name: Build
+        run: npm run build
         # 创建.ssh文件夹 并写入私钥
       - name: Write ssh key
         env:
@@ -43,7 +41,3 @@ jobs:
         # 运行 sh ./cmd/publish.sh 脚本
       - name: Deploy
         run: sh ./cmd/publish.sh
-      
-      # 写一个命令 防止退出
-      - name: Keep alive
-        run: tail -f /dev/null
