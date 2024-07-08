@@ -18,9 +18,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
-      # 安装依赖
-      - name: npm install
-        run: npm install
+      # 安装pnpm
+      - name: 安装pnpm
+        run: npm install -g pnpm
+      # pnpm安装依赖
+      - name: pnpm安装依赖
+        run: pnpm install --frozen-lockfile
       # 打包
       - name: npm build
         run: npm run build
