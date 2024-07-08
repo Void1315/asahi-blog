@@ -1,10 +1,9 @@
 ---
-title: "C++ 智能指针之引用计数"
-description: "实现一个固定类(String)的引用计数类`StringRc`（不允许使用泛型，所以只能支持特定类型）。"
-publishDate: "2024 05 31"
-tags: ["C++"]
+title: 'C++ 智能指针之引用计数'
+description: '实现一个固定类(String)的引用计数类`StringRc`（不允许使用泛型，所以只能支持特定类型）。'
+publishDate: '2024 05 31'
+tags: ['C++']
 ---
-
 
 实现一个固定类(String)的引用计数类`StringRc`（不允许使用泛型，所以只能支持特定类型）。
 
@@ -27,7 +26,7 @@ public:
   String(const char* str);
   ~String();
   String(const String& str);
-  String(String&&); // 移动构造函数  
+  String(String&&); // 移动构造函数
 }
 // String.cpp 文件
 String::String() {
@@ -114,8 +113,6 @@ uintmax_t StringRc::getStrongCountNum() {
 
 ```
 
-
-
 ```c++
 // StringRc.h
 #pragma once
@@ -160,11 +157,9 @@ public:
 - 最后我们看智能指针对象的析构方法`~StringRc();`。
   - 析构方法很好理解，每当一个`StringRc`对象进行析构的时候，我们会通过减少它们公共的强引用计数器来进行无损耗析构。最终在所有引用都被销毁时（强引用计数器为0），手动执行资源`String`的析构，来释放堆内存。
 
-
-
 ![image-20240523192541075](https://raw.githubusercontent.com/Void1315/cpslwd872s/dev/img/20240523192543.png)
 
-----
+---
 
 ### `main`函数开用！
 
@@ -210,14 +205,10 @@ int main(){
 }
 ```
 
-
-
 - 如果我们托管一个`LazyCopy`类用来包裹`String`，那么我们的`StringRc`必须接受一个泛型`T where LatyCopy||String`，泛型`T`必须接收`LazyCopy`或者`String`两个不同对象，不使用泛型语法的情况下，我们很难实现。使用c语法强转？算了吧我不想写屎山。
 - 不允许使用重载，不允许使用泛型。`man what can i say!`
 
 综上所述，我们如果想将写时拷贝与`String`解耦实现。那么我们必须在可以重载、泛型的情况下。所以，我们现在只能冒充一下写时拷贝。
-
-
 
 ```c++
 // StringRc.cpp

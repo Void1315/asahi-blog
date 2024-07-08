@@ -1,13 +1,13 @@
 ---
-title: "Windows SDK 02笔记"
-description: "学习创建一个Win32窗口程序的SOP。使用C++与Visual Studio 2022编写一个最小的窗口程序，并添加基本的消息处理函数。"
-publishDate: "2024 07 07"
-tags: ["C++", "Windows SDK"]
+title: 'Windows SDK 02笔记'
+description: '学习创建一个Win32窗口程序的SOP。使用C++与Visual Studio 2022编写一个最小的窗口程序，并添加基本的消息处理函数。'
+publishDate: '2024 07 07'
+tags: ['C++', 'Windows SDK']
 ---
 
 ## 创建窗口程序
 
-​	`Win32`的窗口程序的创建，总体来说也遵循最简单的流程：`创建窗口`->`显示窗口`。与`Java`不同的是，需要对窗口进行显示的事件处理。官方称之为*绑定窗口过程*
+​ `Win32`的窗口程序的创建，总体来说也遵循最简单的流程：`创建窗口`->`显示窗口`。与`Java`不同的是，需要对窗口进行显示的事件处理。官方称之为*绑定窗口过程*
 
 > 进程必须先注册窗口类，然后才能创建该类的窗口。 注册窗口类会将窗口过程、类样式和其他类属性与类名相关联。 当进程在 [**CreateWindow 或 CreateWindowEx**](https://learn.microsoft.com/zh-cn/windows/win32/api/winuser/nf-winuser-createwindowa) 函数中指定类名时，系统将创建一个窗口，其中包含与该类名关联的窗口过程、样式和其他属性。
 
@@ -15,13 +15,13 @@ tags: ["C++", "Windows SDK"]
 
 **1. 创建窗口类**
 
-​	使用官方提供的`RegisterClass`方法进行窗口类的创建。
+​ 使用官方提供的`RegisterClass`方法进行窗口类的创建。
 
 ```c++
 TOM RegisterClassW([in] const WNDCLASSA *lpWndClass); // RegisterClass的函数签名，RegisterClass是一个宏根据字符集不同分为：RegisterClassA与RegisterClassW
 ```
 
-​	`RegisterClassW`需要一个`WNDCLASSA`窗口类对象。
+​ `RegisterClassW`需要一个`WNDCLASSA`窗口类对象。
 
 ```c++
 typedef struct tagWNDCLASSA {
@@ -71,7 +71,7 @@ typedef struct tagWNDCLASSA {
 HWND hwnd = CreateWindow(
     L"myWindowClass", // 刚才设置的唯一类名标识
     L"Hello, World!", // 窗口标题
-    WS_OVERLAPPEDWINDOW, // 
+    WS_OVERLAPPEDWINDOW, //
     CW_USEDEFAULT, CW_USEDEFAULT,
     CW_USEDEFAULT, CW_USEDEFAULT,
     NULL,
@@ -80,8 +80,6 @@ HWND hwnd = CreateWindow(
     NULL
 );
 ```
-
-
 
 **3/4. 显示窗口&更新窗口**
 
@@ -127,8 +125,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 // 修改创建窗口类的地方
 wc.lpfnWndProc = WndProc; // 设置为自己的过程函数
 ```
-
-
 
 **完整代码**
 
@@ -218,7 +214,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 > 左键按下创建新窗口，点击X，关闭窗口，当只剩最后一个窗口的时候，退出进程。
 
-​	核心思路是，通过一个`set`容器来管理所有创建的窗口，当处理关闭窗口事件时，通过判断容器中是否存在窗口，来决定是否发送关闭进程的事件消息。
+​ 核心思路是，通过一个`set`容器来管理所有创建的窗口，当处理关闭窗口事件时，通过判断容器中是否存在窗口，来决定是否发送关闭进程的事件消息。
 
 ```c++
 #include "HomeWork01.h"
@@ -292,13 +288,11 @@ void HomeWork01::run(HINSTANCE hInstance) {
 }
 ```
 
-
-
 ### 作业2
 
 > 左键按下创建新窗口，点击X，关闭窗口，当点击第一个窗口的时候，退出进程
 
-​	核心思路是通过保存第一个窗口的句柄。当关闭窗口事件发生时，判断发生事件的窗口是否为第一个窗口句柄，如果是，则发送关闭进程的事件来退出程序。
+​ 核心思路是通过保存第一个窗口的句柄。当关闭窗口事件发生时，判断发生事件的窗口是否为第一个窗口句柄，如果是，则发送关闭进程的事件来退出程序。
 
 ```c++
 #include "HomeWork02.h"
@@ -358,4 +352,3 @@ void HomeWork02::run(HINSTANCE hInstance) {
     return;
 }
 ```
-
