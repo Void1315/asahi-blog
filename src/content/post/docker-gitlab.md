@@ -114,6 +114,6 @@ server {
 
 &ensp;&ensp;&ensp;&ensp;我们需要通过这个密码，登录`Gitlab`后台，修改密码。
 
-## 邮件配置
+## 总结
 
-TODO...
+&ensp;&ensp;&ensp;&ensp;`Gitlab`的服务占用实在是太大了，我的2核4G服务器很难吃得消，所以后续使用更轻便的[`Gitea`](https://docs.gitea.com/)来配置。
